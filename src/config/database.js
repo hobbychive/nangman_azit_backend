@@ -10,4 +10,8 @@ const pool = mysql.createPool({
   allowPublicKeyRetrieval: true,
 });
 
-export default pool;
+pool.on("error", (err) => {
+  console.error("Database pool error:", err);
+});
+
+export default pool.promise();
